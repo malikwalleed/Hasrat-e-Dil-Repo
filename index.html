@@ -7,31 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:#0f0f0f; color:white; font-family:'Poppins', sans-serif; overflow:hidden; display:flex; justify-content:center; align-items:center; height:100vh; }
-  /* Floating Hearts Background */
   .hearts { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
   .heart { position:absolute; color:#ff2a6d; animation: floatUp 6s linear infinite; opacity:0.7; }
   @keyframes floatUp { 0% { transform:translateY(100vh) scale(0.5); opacity:1;} 100% { transform:translateY(-10vh) scale(1.2); opacity:0; } }
-
-  /* Book */
-  .book { width:90%; max-width:380px; height:580px; position:relative; z-index:2; perspective:1500px; }
-  .page { position:absolute; width:100%; height:100%; background: linear-gradient(135deg, #fff5f5, #ffe6ea); color:#4a2a2a; border-radius:15px; box-shadow:0 20px 40px rgba(0,0,0,0.5); padding:25px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; text-align:center; transition: transform 1s, opacity 0.8s; transform-origin:left; backface-visibility:hidden; }
+  .book { width:90%; max-width:400px; height:600px; position:relative; z-index:2; }
+  .page { position:absolute; width:100%; height:100%; background: linear-gradient(135deg, #fff5f5, #ffe6ea); color:#4a2a2a; border-radius:15px; box-shadow:0 20px 40px rgba(0,0,0,0.5); padding:25px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; text-align:center; transition: all 0.8s; transform-origin:left; }
   .page.active { transform: rotateY(0deg); z-index:5; opacity:1; }
-  .page.next { transform: rotateY(-180deg); z-index:1; opacity:0; }
-  .page.prev { transform: rotateY(180deg); z-index:1; opacity:0; }
-
-  h1 { font-family:'Great Vibes', cursive; font-size:42px; margin:10px 0; color:#c9184a; }
-  .subtitle { font-size:14px; letter-spacing:2px; color:#888; }
-  .line { font-family:'Great Vibes', cursive; font-size:26px; margin-top:20px; line-height:1.4; }
-  
-  /* Running Romantic Lines */
-  .ticker { position:fixed; bottom:0; left:0; width:100%; background:rgba(201,24,74,0.9); padding:10px 0; white-space:nowrap; overflow:hidden; z-index:10; }
+  .page.hidden { transform: rotateY(-180deg); z-index:1; opacity:0; pointer-events:none; }
+  h1 { font-family:'Great Vibes', cursive; font-size:38px; margin:10px 0; color:#c9184a; }
+  .subtitle { font-size:11px; letter-spacing:2px; color:#888; }
+  .line { font-family:'Great Vibes', cursive; font-size:24px; margin-top:15px; line-height:1.4; }
+  .date-box { background:white; border:2px dashed #c9184a; border-radius:12px; padding:15px; margin:15px 0; }
+  .ticker { position:fixed; bottom:0; left:0; width:100%; background:rgba(201,24,74,0.95); padding:10px 0; white-space:nowrap; overflow:hidden; z-index:10; }
   .ticker-track { display:inline-block; animation: scroll 25s linear infinite; }
-  .ticker-track span { margin:0 40px; font-family:'Great Vibes', cursive; font-size:22px; }
+  .ticker-track span { margin:0 40px; font-family:'Great Vibes', cursive; font-size:20px; color:white; }
   @keyframes scroll { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
-
-  .btn { margin-top:25px; padding:12px 30px; border:none; border-radius:25px; background:#c9184a; color:white; cursor:pointer; font-size:16px; box-shadow:0 5px 15px rgba(201,24,74,0.4); }
-  .btn:active { transform:scale(0.95); }
-  .dots { margin-top:15px; font-size:12px; color:#aaa; }
+  .btn { margin-top:20px; padding:12px 30px; border:none; border-radius:25px; background:#c9184a; color:white; cursor:pointer; font-size:15px; }
+  .dots { margin-top:10px; font-size:11px; color:#aaa; }
 </style>
 </head>
 <body>
@@ -39,196 +31,77 @@
 <div class="hearts" id="hearts"></div>
 
 <div class="book" id="book">
-  <!-- Page 1 - Cover -->
+  <!-- PAGE 1 -->
   <div class="page active" id="p1">
     <div class="subtitle">MY WHOLE UNIVERSE</div>
     <h1>Mari Hasrat-e-Dil ❤️👀</h1>
-    <p style="margin-top:10px;">Tum meri woh khwahish ho jo dil se nikli hai</p>
+    <p>Tum meri woh khwahish ho jo dil se nikli hai</p>
     <div style="font-size:50px; margin:20px 0;">❤️</div>
     <button class="btn" onclick="nextPage()">Kitaab Kholo 📖</button>
-    <div class="dots">1 / 4</div>
+    <div class="dots">1 / 5</div>
   </div>
 
-  <!-- Page 2 -->
-  <div class="page next" id="p2">
-    <h1>Tum...</h1>
-    <p class="line">"Tumhe dekha to laga,<br>jaise sari hasratein poori ho gayi,<br>tum mili to aisa laga<br>jaise meri duniya mukammal ho gayi"</p>
+  <!-- PAGE 2 - YOUR SPECIAL DATE -->
+  <div class="page hidden" id="p2">
+    <div class="subtitle">MY MOST SPECIAL DAY</div>
+    <div class="date-box">
+      <div style="font-size:11px; letter-spacing:3px; color:#c9184a; font-weight:bold;">FIRST TIME EVER</div>
+      <div style="font-family:'Great Vibes', cursive; font-size:36px; color:#c9184a; margin:5px 0;">04 October 2026</div>
+      <div style="background:#c9184a; color:white; border-radius:20px; padding:7px 18px; display:inline-block; font-size:14px;">07:00 PM to 09:00 PM</div>
+      <div style="margin-top:8px; font-size:12px; color:#666;">Very Special For Me ❤️</div>
+    </div>
+    <p class="line">"Ye 2 ghante meri zindagi ke<br>sab se haseen ghante the"</p>
     <button class="btn" onclick="nextPage()">Agla Safha ➡️</button>
-    <div class="dots">2 / 4</div>
+    <div class="dots">2 / 5</div>
   </div>
 
-  <!-- Page 3 -->
-  <div class="page next" id="p3">
+  <!-- PAGE 3 -->
+  <div class="page hidden" id="p3">
+    <h1>Tum...</h1>
+    <p class="line">"Tumhe dekha to laga,<br>jaise sari hasratein poori ho gayi"</p>
+    <button class="btn" onclick="nextPage()">Agla Safha ➡️</button>
+    <div class="dots">3 / 5</div>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div class="page hidden" id="p4">
     <h1>Meri Har Dua</h1>
     <p class="line">"Har raat chand se kehta hun,<br>tujhe khush rakhna,<br>har subha Rab se kehta hun,<br>tujhe mera rakhna"</p>
-    <p style="margin-top:15px; font-size:13px;">Tum meri subha, tum meri shaam ho...</p>
     <button class="btn" onclick="nextPage()">Akhir Me ➡️</button>
-    <div class="dots">3 / 4</div>
+    <div class="dots">4 / 5</div>
   </div>
 
-  <!-- Page 4 -->
-  <div class="page next" id="p4">
+  <!-- PAGE 5 -->
+  <div class="page hidden" id="p5">
     <h1>Hamesha Ke Liye</h1>
-    <p class="line">"Ye kitaab khatam ho jayegi,<br>par tumse mohabbat kabhi nahi,<br>tum meri hasrat nahi,<br>tum meri aadat ban gayi ho"</p>
+    <p class="line">"Ye kitaab khatam ho jayegi,<br>par tumse mohabbat kabhi nahi"</p>
     <div style="font-size:40px; margin-top:15px;">❤️👀❤️</div>
     <button class="btn" onclick="goHome()">Phir Se Padho 🔄</button>
-    <div class="dots">4 / 4</div>
+    <div class="dots">5 / 5</div>
   </div>
 </div>
 
-<div class="ticker">
-  <div class="ticker-track">
-    <span>❤️ Tum meri hasrat ho ❤️</span>
-    <span>👀 Tum meri aadat ban gayi ho 👀</span>
-    <span>❤️ Tum bin dil nahi lagta ❤️</span>
-    <span>💖 Tum meri duniya ho 💖</span>
-    <span>❤️ Mari Hasrat-e-Dil ❤️</span>
-  </div>
-</div>
+<div class="ticker"><div class="ticker-track">
+<span>❤️ 04 Oct 2026 - 7PM to 9PM ❤️</span><span>👀 Tum meri aadat ban gayi ho 👀</span><span>❤️ Tum bin dil nahi lagta ❤️</span><span>💖 Mari Hasrat-e-Dil 💖</span>
+</div></div>
 
 <script>
-let current = 1;
-const total = 4;
-
+let current = 1; const total = 5;
 function nextPage(){
   if(current >= total) return;
-  document.getElementById('p'+current).className = 'page prev';
+  document.getElementById('p'+current).className = 'page hidden';
   current++;
   document.getElementById('p'+current).className = 'page active';
 }
 function goHome(){
-  for(let i=1;i<=total;i++) document.getElementById('p'+i).className = 'page next';
-  current=1;
-  document.getElementById('p1').className = 'page active';
+  for(let i=1;i<=total;i++) document.getElementById('p'+i).className = 'page hidden';
+  current=1; document.getElementById('p1').className = 'page active';
 }
-// Hearts generator
 function createHeart(){
-  const h = document.createElement('div');
-  h.className='heart';
-  h.innerHTML='❤️';
-  h.style.left = Math.random()*100+'vw';
-  h.style.fontSize = (12+Math.random()*20)+'px';
+  const h = document.createElement('div'); h.className='heart'; h.innerHTML='❤️';
+  h.style.left = Math.random()*100+'vw'; h.style.fontSize = (12+Math.random()*20)+'px';
   h.style.animationDuration = (4+Math.random()*4)+'s';
-  document.getElementById('hearts').appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-}
-setInterval(createHeart,300);
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mari Hasrat-e-Dil ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
-<style>
-  body { margin:0; background:#0f0f0f; color:white; font-family:'Poppins', sans-serif; overflow:hidden; display:flex; justify-content:center; align-items:center; height:100vh; }
-  /* Floating Hearts Background */
-  .hearts { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-  .heart { position:absolute; color:#ff2a6d; animation: floatUp 6s linear infinite; opacity:0.7; }
-  @keyframes floatUp { 0% { transform:translateY(100vh) scale(0.5); opacity:1;} 100% { transform:translateY(-10vh) scale(1.2); opacity:0; } }
-
-  /* Book */
-  .book { width:90%; max-width:380px; height:580px; position:relative; z-index:2; perspective:1500px; }
-  .page { position:absolute; width:100%; height:100%; background: linear-gradient(135deg, #fff5f5, #ffe6ea); color:#4a2a2a; border-radius:15px; box-shadow:0 20px 40px rgba(0,0,0,0.5); padding:25px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; text-align:center; transition: transform 1s, opacity 0.8s; transform-origin:left; backface-visibility:hidden; }
-  .page.active { transform: rotateY(0deg); z-index:5; opacity:1; }
-  .page.next { transform: rotateY(-180deg); z-index:1; opacity:0; }
-  .page.prev { transform: rotateY(180deg); z-index:1; opacity:0; }
-
-  h1 { font-family:'Great Vibes', cursive; font-size:42px; margin:10px 0; color:#c9184a; }
-  .subtitle { font-size:14px; letter-spacing:2px; color:#888; }
-  .line { font-family:'Great Vibes', cursive; font-size:26px; margin-top:20px; line-height:1.4; }
-  
-  /* Running Romantic Lines */
-  .ticker { position:fixed; bottom:0; left:0; width:100%; background:rgba(201,24,74,0.9); padding:10px 0; white-space:nowrap; overflow:hidden; z-index:10; }
-  .ticker-track { display:inline-block; animation: scroll 25s linear infinite; }
-  .ticker-track span { margin:0 40px; font-family:'Great Vibes', cursive; font-size:22px; }
-  @keyframes scroll { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
-
-  .btn { margin-top:25px; padding:12px 30px; border:none; border-radius:25px; background:#c9184a; color:white; cursor:pointer; font-size:16px; box-shadow:0 5px 15px rgba(201,24,74,0.4); }
-  .btn:active { transform:scale(0.95); }
-  .dots { margin-top:15px; font-size:12px; color:#aaa; }
-</style>
-</head>
-<body>
-
-<div class="hearts" id="hearts"></div>
-
-<div class="book" id="book">
-  <!-- Page 1 - Cover -->
-  <div class="page active" id="p1">
-    <div class="subtitle">MY WHOLE UNIVERSE</div>
-    <h1>Mari Hasrat-e-Dil ❤️👀</h1>
-    <p style="margin-top:10px;">Tum meri woh khwahish ho jo dil se nikli hai</p>
-    <div style="font-size:50px; margin:20px 0;">❤️</div>
-    <button class="btn" onclick="nextPage()">Kitaab Kholo 📖</button>
-    <div class="dots">1 / 4</div>
-  </div>
-
-  <!-- Page 2 -->
-  <div class="page next" id="p2">
-    <h1>Tum...</h1>
-    <p class="line">"Tumhe dekha to laga,<br>jaise sari hasratein poori ho gayi,<br>tum mili to aisa laga<br>jaise meri duniya mukammal ho gayi"</p>
-    <button class="btn" onclick="nextPage()">Agla Safha ➡️</button>
-    <div class="dots">2 / 4</div>
-  </div>
-
-  <!-- Page 3 -->
-  <div class="page next" id="p3">
-    <h1>Meri Har Dua</h1>
-    <p class="line">"Har raat chand se kehta hun,<br>tujhe khush rakhna,<br>har subha Rab se kehta hun,<br>tujhe mera rakhna"</p>
-    <p style="margin-top:15px; font-size:13px;">Tum meri subha, tum meri shaam ho...</p>
-    <button class="btn" onclick="nextPage()">Akhir Me ➡️</button>
-    <div class="dots">3 / 4</div>
-  </div>
-
-  <!-- Page 4 -->
-  <div class="page next" id="p4">
-    <h1>Hamesha Ke Liye</h1>
-    <p class="line">"Ye kitaab khatam ho jayegi,<br>par tumse mohabbat kabhi nahi,<br>tum meri hasrat nahi,<br>tum meri aadat ban gayi ho"</p>
-    <div style="font-size:40px; margin-top:15px;">❤️👀❤️</div>
-    <button class="btn" onclick="goHome()">Phir Se Padho 🔄</button>
-    <div class="dots">4 / 4</div>
-  </div>
-</div>
-
-<div class="ticker">
-  <div class="ticker-track">
-    <span>❤️ Tum meri hasrat ho ❤️</span>
-    <span>👀 Tum meri aadat ban gayi ho 👀</span>
-    <span>❤️ Tum bin dil nahi lagta ❤️</span>
-    <span>💖 Tum meri duniya ho 💖</span>
-    <span>❤️ Mari Hasrat-e-Dil ❤️</span>
-  </div>
-</div>
-
-<script>
-let current = 1;
-const total = 4;
-
-function nextPage(){
-  if(current >= total) return;
-  document.getElementById('p'+current).className = 'page prev';
-  current++;
-  document.getElementById('p'+current).className = 'page active';
-}
-function goHome(){
-  for(let i=1;i<=total;i++) document.getElementById('p'+i).className = 'page next';
-  current=1;
-  document.getElementById('p1').className = 'page active';
-}
-// Hearts generator
-function createHeart(){
-  const h = document.createElement('div');
-  h.className='heart';
-  h.innerHTML='❤️';
-  h.style.left = Math.random()*100+'vw';
-  h.style.fontSize = (12+Math.random()*20)+'px';
-  h.style.animationDuration = (4+Math.random()*4)+'s';
-  document.getElementById('hearts').appendChild(h);
-  setTimeout(()=>h.remove(),6000);
+  document.getElementById('hearts').appendChild(h); setTimeout(()=>h.remove(),6000);
 }
 setInterval(createHeart,300);
 </script>
