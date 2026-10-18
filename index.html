@@ -128,4 +128,43 @@ setInterval(createHeart,300);
 
     </body>
     </html>
+<!DOCTYPE html>
+<html>
+<head><title>Mari Hasrat-e-Dil ❤️</title></head>
+<body>
 
+<!-- TUMHARI SARI PURANI PAGES p1 se p6 yahan waise hi rahengi -->
+<!-- Main yahan sirf p7 ka sahi code de raha hun jo sahi jagah pe hai -->
+
+  <div class="page hidden" id="p7">
+    <div class="subtitle">Meri Jaan Ka Challenge</div>
+    <h1>3 Din Aur 7 Ghante ⏳</h1>
+    <p class="line">"Meri jaan mujhe ik challenge diya 3 din pehle pura karne ke liye,<br>ke mujhe unka address dhondna hai"</p>
+    <p class="line">"Aur is challenge me sirf 7 ghante reh gaye hain,<br>par main dhond nahi paya abhi tak..."</p>
+    <p class="line" style="margin-top:20px; font-style:italic;">"Aapka pata mere dil me hai,<br>duniya wala pata aap khud de do ❤️"</p>
+    <button class="btn" onclick="nextPage()">Meri Guzaarish ➡️</button>
+    <div class="dots">7 / 7</div>
+  </div>
+
+<script>
+let current = 1; const total = 7;
+function nextPage(){
+ if(current >= total) return;
+ document.getElementById('p'+current).className = 'page hidden';
+ current++;
+ document.getElementById('p'+current).className = 'page active';
+}
+function goHome(){
+ for(let i=1;i<=total;i++) document.getElementById('p'+i).className = 'page hidden';
+ current=1; document.getElementById('p1').className = 'page active';
+}
+function createHeart(){
+ const h = document.createElement('div'); h.className='heart'; h.innerHTML='❤️';
+ h.style.left = Math.random()*100+'vw'; h.style.fontSize = (12+Math.random()*20)+'px';
+ h.style.animationDuration = (4+Math.random()*4)+'s';
+ document.getElementById('hearts').appendChild(h); setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,300);
+</script>
+</body>
+</html>
